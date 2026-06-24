@@ -36,3 +36,35 @@
     io.observe(el);
   });
 })();
+
+/* hero headline: flip through fonts, then settle on the default */
+(function(){
+  const h1=document.querySelector('.hero h1');
+  if(!h1) return;
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // a few distinct faces to cycle through before landing on the CSS default
+  const fonts=[
+    "'JetBrains Mono', monospace",
+    "'EB Garamond', serif",
+    "Georgia, serif",
+    "'Courier New', monospace",
+    "'Trebuchet MS', sans-serif",
+    "'Times New Roman', serif",
+    "'JetBrains Mono', monospace",
+    "'EB Garamond', serif"
+  ];
+
+  let i=0;
+  const tick=()=>{
+    if(i>=fonts.length){
+      h1.style.fontFamily='';   // back to the CSS default (Cormorant Garamond)
+      h1.classList.add('font-set');
+      return;
+    }
+    h1.style.fontFamily=fonts[i++];
+    setTimeout(tick, 110);
+  };
+  // small delay so it's visible after first paint
+  setTimeout(tick, 260);
+})();
