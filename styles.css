@@ -179,10 +179,22 @@ section{padding:74px 0;position:relative}
 }
 .svc:hover{transform:translateY(-4px);box-shadow:var(--nm-out-lg)}
 .svc .ic{
-  width:54px;height:54px;border-radius:16px;display:grid;place-items:center;
-  color:var(--ink-2);background:var(--bg);box-shadow:var(--nm-in-sm);margin-bottom:18px;
+  width:56px;height:56px;border-radius:18px;display:grid;place-items:center;margin-bottom:18px;
+  position:relative;background:linear-gradient(145deg,#8e8e93,#636366);
+  box-shadow:0 10px 20px -8px rgba(20,16,10,.45), inset 0 1px 0 rgba(255,255,255,.45);
 }
-.svc .ic svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.svc .ic::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,0) 55%);pointer-events:none}
+.svc .ic svg{position:relative;z-index:1;width:28px;height:28px;fill:none;stroke:#fff;stroke-width:1.85;stroke-linecap:round;stroke-linejoin:round}
+
+/* ── Apple-grade colourful icon palette ── */
+.g-blue{background:linear-gradient(145deg,#3b9bff,#0a63e6)!important}
+.g-purple{background:linear-gradient(145deg,#a96bff,#6d28d9)!important}
+.g-pink{background:linear-gradient(145deg,#ff6aa2,#e11d6b)!important}
+.g-orange{background:linear-gradient(145deg,#ffae42,#f5660a)!important}
+.g-green{background:linear-gradient(145deg,#46d36b,#119e54)!important}
+.g-teal{background:linear-gradient(145deg,#34d8d0,#0a9aa6)!important}
+.g-gold{background:linear-gradient(145deg,#ffd24a,#f0950e)!important}
+.g-red{background:linear-gradient(145deg,#ff7a5c,#e62f3b)!important}
 .svc h3{font-size:1.5rem;font-weight:600;margin-bottom:.5rem}
 .svc p{color:var(--ink-2);font-size:1rem;line-height:1.5}
 .svc .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:16px}
@@ -235,7 +247,13 @@ section{padding:74px 0;position:relative}
   font-family:var(--mono);font-size:.78rem;letter-spacing:.02em;color:var(--ink-2);
   background:var(--bg);padding:.7rem 1.1rem;border-radius:14px;box-shadow:var(--nm-out-sm);
 }
-.logo svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;vertical-align:-3px;margin-right:.45em;color:var(--ink-3)}
+.logo.award{display:inline-flex;align-items:center;gap:.6em;padding-left:.6rem}
+.logo .ti{
+  display:inline-grid;place-items:center;width:30px;height:30px;border-radius:9px;flex:none;
+  background:linear-gradient(145deg,#8e8e93,#636366);
+  box-shadow:0 4px 9px -3px rgba(20,16,10,.45), inset 0 1px 0 rgba(255,255,255,.4);
+}
+.logo .ti svg{width:17px;height:17px;fill:none;stroke:#fff;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .quote{font-family:var(--display);font-size:clamp(1.6rem,3.4vw,2.4rem);font-weight:500;line-height:1.25;max-width:26ch;margin-bottom:8px}
 .quote .grad{font-style:italic;background:linear-gradient(120deg,var(--accent),var(--accent-lt));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 
