@@ -43,28 +43,57 @@
   if(!h1) return;
   if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  // a few distinct faces to cycle through before landing on the CSS default
+  // distinct faces to cycle through before landing on the CSS default (Cormorant Garamond)
   const fonts=[
     "'JetBrains Mono', monospace",
     "'EB Garamond', serif",
     "Georgia, serif",
     "'Courier New', monospace",
     "'Trebuchet MS', sans-serif",
-    "'Times New Roman', serif",
-    "'JetBrains Mono', monospace",
-    "'EB Garamond', serif"
+    "'Times New Roman', serif"
   ];
 
-  let i=0;
-  const tick=()=>{
-    if(i>=fonts.length){
-      h1.style.fontFamily='';   // back to the CSS default (Cormorant Garamond)
-      h1.classList.add('font-set');
-      return;
-    }
-    h1.style.fontFamily=fonts[i++];
-    setTimeout(tick, 110);
+  // wrap each word in a .flip span, keeping the .grad phrase as a single unit
+  const units=[];
+  const wrapText=(text)=>{
+    const frag=document.createDocumentFragment();
+    text.split(/(\s+)/).forEach(tok=>{
+      if(tok.trim()===''){ if(tok) frag.appendChild(document.createTextNode(tok)); return; }
+      const s=document.createElement('span');
+      s.className='flip'; s.textContent=tok;
+      units.push(s); frag.appendChild(s);
+    });
+    return frag;
   };
-  // small delay so it's visible after first paint
-  setTimeout(tick, 260);
+  Array.from(h1.childNodes).forEach(node=>{
+    if(node.nodeType===3){ h1.replaceChild(wrapText(node.textContent), node); }
+    else if(node.nodeType===1){ node.classList.add('flip'); units.push(node); }
+  });
+
+  // timing — deliberately unhurried
+  const STEP=190;     // ms between font swaps within a word
+  const FLIPS=5;      // font changes before a word lands
+  const STAGGER=140;  // ms between successive words starting
+  let landed=0;
+
+  const animateWord=(el,wordIdx)=>{
+    let n=0;
+    const swap=()=>{
+      if(n>=FLIPS){
+        el.style.fontFamily='';          // back to the CSS default face
+        el.classList.add('landed');
+        if(++landed===units.length) h1.classList.add('font-set');
+        return;
+      }
+      el.style.fontFamily=fonts[(n+wordIdx)%fonts.length];
+      n++;
+      setTimeout(swap, STEP);
+    };
+    swap();
+  };
+
+  // small delay so it's visible after first paint, then stagger word-by-word
+  setTimeout(()=>{
+    units.forEach((el,idx)=>setTimeout(()=>animateWord(el,idx), idx*STAGGER));
+  }, 280);
 })();
