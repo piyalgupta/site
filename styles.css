@@ -7,9 +7,12 @@
   --ink-2:     #423D34;
   --ink-3:     #7A7065;
   --ink-4:     #ADA597;
-  --accent:    #3D5A47;
-  --accent-lt: #6E8C78;
+  --accent:    #138808;
+  --accent-lt: #4F9E47;
   --accent-soft:#EAF0EC;
+  --saffron:   #FF9933;
+  --saffron-dk:#E07B16;
+  --india-green:#138808;
 
   --nm-light:  #FFFFFF;
   --nm-dark:   #E2DCCF;
@@ -69,6 +72,8 @@ a{color:inherit}
   backdrop-filter:saturate(140%) blur(10px);
   background:color-mix(in srgb,var(--bg) 82%,transparent);
   border-bottom:1px solid color-mix(in srgb,var(--nm-dark) 55%,transparent);
+  border-top:3px solid transparent;
+  border-image:linear-gradient(90deg,var(--saffron) 0 33.3%,#ffffff 33.3% 66.6%,var(--india-green) 66.6% 100%) 1;
 }
 .bar .wrap{display:flex;align-items:center;justify-content:space-between;height:74px;gap:1rem}
 .brand{display:flex;align-items:center;gap:.7rem;text-decoration:none}
@@ -137,7 +142,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:500;letter-spacing:.005em}
   padding:.95rem 1.6rem;border-radius:16px;display:inline-flex;align-items:center;gap:.55rem;
   transition:transform .22s var(--spring),box-shadow .22s;
 }
-.btn-primary{background:var(--accent);color:#fff;box-shadow:var(--nm-out)}
+.btn-primary{background:linear-gradient(135deg,var(--saffron),var(--india-green));color:#fff;box-shadow:var(--nm-out)}
 .btn-primary:hover{transform:translateY(-2px)}
 .btn-primary:active{box-shadow:var(--nm-in)}
 .btn-ghost{background:var(--bg);color:var(--ink);box-shadow:var(--nm-out)}
@@ -236,7 +241,7 @@ section{padding:74px 0;position:relative}
 .final .actions{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
 
 /* ───────────────────────── Footer ───────────────────────── */
-footer{padding:48px 0 60px;color:var(--ink-3)}
+footer{padding:48px 0 60px;color:var(--ink-3);border-top:3px solid transparent;border-image:linear-gradient(90deg,var(--saffron) 0 33.3%,#ffffff 33.3% 66.6%,var(--india-green) 66.6% 100%) 1}
 footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
 footer .mono{font-size:.7rem;color:var(--ink-4)}
 footer a{text-decoration:none;color:var(--ink-2)}
