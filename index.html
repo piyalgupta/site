@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piyal Gupta — AI Governance & Enterprise Advisory</title>
+<meta name="description" content="Piyal Gupta — structural AI governance and enterprise advisory. Audit-ready oversight aligned to NIST AI RMF, ISO/IEC 42001 and the EU AI Act, backed by two decades of global delivery and commercial leadership.">
+<meta property="og:title" content="Piyal Gupta — AI Governance & Enterprise Advisory">
+<meta property="og:description" content="Make AI governable. Audit-ready oversight aligned to NIST AI RMF · ISO/IEC 42001 · EU AI Act.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ───────────────────────── Tokens ───────────────────────── */
+:root{
+  /* surface — neumorphism needs a single mid-tone canvas */
+  --bg:        #E8E4DC;
+  --bg-2:      #E4DFD6;
+  --ink:       #1C1A17;
+  --ink-2:     #3D3830;
+  --ink-3:     #7A7065;
+  --ink-4:     #A89E90;
+  --accent:    #3D5A47;
+  --accent-lt: #6E8C78;
+  --accent-soft:#EAF0EC;
+
+  /* neumorphic light/dark shadow pair */
+  --nm-light:  #F7F3EB;
+  --nm-dark:   #C9C3B7;
+  --nm-out:    8px 8px 18px var(--nm-dark), -8px -8px 18px var(--nm-light);
+  --nm-out-sm: 5px 5px 11px var(--nm-dark), -5px -5px 11px var(--nm-light);
+  --nm-out-lg: 14px 14px 34px var(--nm-dark), -14px -14px 34px var(--nm-light);
+  --nm-in:     inset 5px 5px 11px var(--nm-dark), inset -5px -5px 11px var(--nm-light);
+  --nm-in-sm:  inset 3px 3px 7px var(--nm-dark), inset -3px -3px 7px var(--nm-light);
+
+  --sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --ease: cubic-bezier(.16,1,.3,1);
+  --spring: cubic-bezier(.34,1.4,.64,1);
+}
+[data-theme="dark"]{
+  --bg:        #23211D;
+  --bg-2:      #201E1A;
+  --ink:       #F2EEE6;
+  --ink-2:     #D8D2C7;
+  --ink-3:     #A49C8E;
+  --ink-4:     #6E665A;
+  --accent:    #8FB29B;
+  --accent-lt: #6E8C78;
+  --accent-soft:#2C3A31;
+  --nm-light:  #2C2A25;
+  --nm-dark:   #18160F;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.mono{font-family:var(--mono);letter-spacing:.04em}
+.eyebrow{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--accent);
+  display:inline-flex;align-items:center;gap:.6em;
+}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--accent);opacity:.55}
+a{color:inherit}
+
+/* ───────────────────────── Top bar ───────────────────────── */
+.bar{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:saturate(140%) blur(10px);
+  background:color-mix(in srgb,var(--bg) 78%,transparent);
+  border-bottom:1px solid color-mix(in srgb,var(--nm-dark) 40%,transparent);
+}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font-weight:800;letter-spacing:-.01em;font-size:1.02rem;display:flex;align-items:center;gap:.55rem}
+.brand b{color:var(--accent)}
+.brand .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:var(--nm-out-sm)}
+.bar nav{display:flex;align-items:center;gap:.4rem}
+.bar nav a{
+  font-family:var(--mono);font-size:.74rem;letter-spacing:.04em;
+  color:var(--ink-3);text-decoration:none;padding:.5rem .8rem;border-radius:10px;
+  transition:color .25s,box-shadow .25s;
+}
+.bar nav a:hover{color:var(--ink);box-shadow:var(--nm-out-sm)}
+.theme-btn{
+  border:0;cursor:pointer;background:var(--bg);color:var(--ink-2);
+  width:40px;height:40px;border-radius:50%;font-size:1rem;
+  box-shadow:var(--nm-out-sm);transition:box-shadow .2s,transform .2s;
+}
+.theme-btn:active{box-shadow:var(--nm-in-sm);transform:scale(.96)}
+.cta-mini{
+  margin-left:.4rem;font-family:var(--sans);font-weight:600;font-size:.82rem;
+  color:#fff;background:var(--accent);padding:.6rem 1.1rem;border-radius:12px;
+  text-decoration:none;box-shadow:var(--nm-out-sm);transition:transform .2s,box-shadow .2s;
+}
+.cta-mini:hover{transform:translateY(-1px)}
+@media(max-width:760px){.bar nav .hide-sm{display:none}}
+
+/* ───────────────────────── Hero ───────────────────────── */
+.hero{padding:92px 0 70px;position:relative}
+.hero .badge-row{display:flex;flex-wrap:wrap;gap:.5rem;margin:26px 0 30px}
+.badge{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.05em;color:var(--ink-2);
+  background:var(--bg);padding:.5rem .85rem;border-radius:30px;box-shadow:var(--nm-out-sm);
+}
+.hero h1{
+  font-size:clamp(2.4rem,6vw,4.5rem);line-height:1.02;font-weight:800;
+  letter-spacing:-.03em;margin-bottom:1.1rem;max-width:14ch;
+}
+.hero h1 .grad{
+  background:linear-gradient(120deg,var(--accent),var(--accent-lt));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero p.lede{font-size:clamp(1.05rem,2vw,1.32rem);color:var(--ink-2);max-width:54ch;font-weight:400}
+.hero .actions{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:34px}
+.btn{
+  font-weight:600;font-size:.95rem;text-decoration:none;border:0;cursor:pointer;
+  padding:.95rem 1.6rem;border-radius:16px;display:inline-flex;align-items:center;gap:.55rem;
+  transition:transform .22s var(--spring),box-shadow .22s;
+}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:var(--nm-out)}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-primary:active{box-shadow:var(--nm-in)}
+.btn-ghost{background:var(--bg);color:var(--ink);box-shadow:var(--nm-out)}
+.btn-ghost:hover{transform:translateY(-2px)}
+.btn-ghost:active{box-shadow:var(--nm-in)}
+
+/* stat strip */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:62px}
+.stat{background:var(--bg);border-radius:20px;padding:24px 22px;box-shadow:var(--nm-out)}
+.stat .n{font-size:2rem;font-weight:800;letter-spacing:-.02em;color:var(--accent)}
+.stat .l{font-family:var(--mono);font-size:.68rem;letter-spacing:.05em;color:var(--ink-3);text-transform:uppercase;margin-top:.35rem}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* ───────────────────────── Section frame ───────────────────────── */
+section{padding:78px 0;position:relative}
+.sec-head{margin-bottom:46px;max-width:62ch}
+.sec-head h2{font-size:clamp(1.7rem,3.4vw,2.6rem);font-weight:800;letter-spacing:-.025em;margin:.6rem 0 .7rem;line-height:1.08}
+.sec-head p{color:var(--ink-2);font-size:1.05rem}
+
+/* ───────────────────────── Services ───────────────────────── */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media(max-width:920px){.svc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.svc-grid{grid-template-columns:1fr}}
+.svc{
+  background:var(--bg);border-radius:24px;padding:30px 28px 28px;
+  box-shadow:var(--nm-out);position:relative;overflow:hidden;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease);
+}
+.svc:hover{transform:translateY(-4px);box-shadow:var(--nm-out-lg)}
+.svc .ic{
+  width:54px;height:54px;border-radius:16px;display:grid;place-items:center;
+  font-size:1.5rem;background:var(--bg);box-shadow:var(--nm-in-sm);margin-bottom:18px;
+}
+.svc h3{font-size:1.18rem;font-weight:700;letter-spacing:-.01em;margin-bottom:.5rem}
+.svc p{color:var(--ink-2);font-size:.93rem;line-height:1.5}
+.svc .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:16px}
+.svc .tags span{
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.03em;color:var(--accent);
+  background:var(--accent-soft);padding:.32rem .6rem;border-radius:20px;
+}
+.svc .num{position:absolute;top:22px;right:24px;font-family:var(--mono);font-size:.72rem;color:var(--ink-4)}
+.svc.flag{grid-column:span 1}
+.svc.flag .ribbon{
+  position:absolute;top:0;right:0;background:var(--accent);color:#fff;
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;padding:.3rem .7rem;
+  border-bottom-left-radius:12px;text-transform:uppercase;
+}
+
+/* ───────────────────────── Engagements ───────────────────────── */
+.eng-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:880px){.eng-grid{grid-template-columns:1fr}}
+.eng{
+  background:var(--bg);border-radius:26px;padding:34px 30px;box-shadow:var(--nm-out);
+  display:flex;flex-direction:column;transition:transform .3s var(--ease);
+}
+.eng:hover{transform:translateY(-3px)}
+.eng.feature{box-shadow:var(--nm-out-lg);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent)}
+.eng .kicker{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.eng h3{font-size:1.4rem;font-weight:800;letter-spacing:-.02em;margin:.5rem 0 .2rem}
+.eng .meta{font-family:var(--mono);font-size:.78rem;color:var(--ink-3);margin-bottom:18px}
+.eng ul{list-style:none;display:flex;flex-direction:column;gap:.65rem;margin-top:6px}
+.eng li{display:flex;gap:.6rem;font-size:.92rem;color:var(--ink-2);line-height:1.45}
+.eng li::before{content:"→";color:var(--accent);font-weight:700}
+.eng .pill{align-self:flex-start;margin-bottom:18px;font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--accent);padding:.3rem .7rem;border-radius:20px}
+
+/* ───────────────────────── Process ───────────────────────── */
+.proc{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:step}
+@media(max-width:880px){.proc{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.proc{grid-template-columns:1fr}}
+.step{background:var(--bg);border-radius:22px;padding:28px 24px;box-shadow:var(--nm-out);counter-increment:step}
+.step .no{
+  width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  font-family:var(--mono);font-weight:500;color:var(--accent);box-shadow:var(--nm-in-sm);margin-bottom:16px;
+}
+.step .no::before{content:"0" counter(step)}
+.step h4{font-size:1.05rem;font-weight:700;margin-bottom:.4rem}
+.step p{font-size:.88rem;color:var(--ink-2)}
+
+/* ───────────────────────── Credibility ───────────────────────── */
+.cred{background:var(--bg);border-radius:30px;padding:48px 42px;box-shadow:var(--nm-in)}
+.cred .row{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px}
+.logo{
+  font-family:var(--mono);font-size:.82rem;letter-spacing:.02em;color:var(--ink-2);
+  background:var(--bg);padding:.7rem 1.1rem;border-radius:14px;box-shadow:var(--nm-out-sm);
+}
+.quote{font-size:clamp(1.3rem,3vw,1.9rem);font-weight:600;letter-spacing:-.02em;line-height:1.28;max-width:24ch;margin-bottom:8px}
+.quote .grad{background:linear-gradient(120deg,var(--accent),var(--accent-lt));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+/* ───────────────────────── CTA ───────────────────────── */
+.final{text-align:center}
+.final .panel{background:var(--bg);border-radius:34px;padding:64px 40px;box-shadow:var(--nm-out-lg);max-width:780px;margin:0 auto}
+.final h2{font-size:clamp(1.9rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;margin-bottom:1rem}
+.final p{color:var(--ink-2);font-size:1.1rem;max-width:48ch;margin:0 auto 32px}
+.final .actions{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
+
+/* ───────────────────────── Footer ───────────────────────── */
+footer{padding:48px 0 60px;color:var(--ink-3)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
+footer .mono{font-size:.72rem;color:var(--ink-4)}
+footer a{text-decoration:none;color:var(--ink-2)}
+footer a:hover{color:var(--accent)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+@media(prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ───────────── Top bar ───────────── -->
+<header class="bar">
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span>Piyal&nbsp;Gupta&nbsp;<b>/ Advisory</b></div>
+    <nav>
+      <a href="#services" class="hide-sm">Services</a>
+      <a href="#engagements" class="hide-sm">Engagements</a>
+      <a href="#process" class="hide-sm">Process</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">🌙</button>
+      <a href="#contact" class="cta-mini">Book a call</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ───────────── Hero ───────────── -->
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Structural AI Governance &amp; Enterprise Advisory</span>
+    <div class="badge-row">
+      <span class="badge">NIST AI RMF</span>
+      <span class="badge">ISO/IEC 42001</span>
+      <span class="badge">EU AI Act</span>
+      <span class="badge">ISACA · GenAI Audit</span>
+      <span class="badge">Anthropic Certified</span>
+    </div>
+    <h1>I make AI <span class="grad">governable</span> — before it makes the news.</h1>
+    <p class="lede">Two decades turning ambitious technology into audited, accountable, revenue-bearing delivery — now focused on helping enterprises and the public sector adopt AI they can actually stand behind in front of a regulator, a board, or a customer.</p>
+    <div class="actions">
+      <a href="#contact" class="btn btn-primary">Start a conversation →</a>
+      <a href="#services" class="btn btn-ghost">Explore services</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat reveal"><div class="n">20<span style="font-size:1.1rem">yrs</span></div><div class="l">Global leadership</div></div>
+      <div class="stat reveal"><div class="n">14</div><div class="l">Countries delivered</div></div>
+      <div class="stat reveal"><div class="n">18%</div><div class="l">Cloud cost reduced</div></div>
+      <div class="stat reveal"><div class="n">33</div><div class="l">Certifications</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── Services ───────────── -->
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">01 · What I do</span>
+      <h2>Six ways I help you adopt AI without losing control of it.</h2>
+      <p>Each engagement is built on the same spine: enterprise delivery discipline, commercial pragmatism, and governance frameworks regulators actually recognise.</p>
+    </div>
+
+    <div class="svc-grid">
+      <article class="svc flag reveal">
+        <span class="ribbon">Flagship</span>
+        <div class="ic">🏛️</div>
+        <h3>AI Governance &amp; Oversight</h3>
+        <p>Stand up an audit-ready governance layer: AI policy, risk classification, model inventories, and oversight that maps cleanly to NIST AI RMF, ISO/IEC 42001, and the EU AI Act.</p>
+        <div class="tags"><span>Policy</span><span>Risk tiering</span><span>Controls</span><span>Audit trails</span></div>
+      </article>
+
+      <article class="svc reveal">
+        <span class="num">02</span>
+        <div class="ic">🔍</div>
+        <h3>AI Risk &amp; Audit Assurance</h3>
+        <p>Independent review of your AI and GenAI systems — bias, security, data lineage, vendor and third-party model risk — with a remediation roadmap your auditors and CRO will accept.</p>
+        <div class="tags"><span>GenAI audit</span><span>Vendor risk</span><span>Assurance</span></div>
+      </article>
+
+      <article class="svc reveal">
+        <span class="num">03</span>
+        <div class="ic">🤖</div>
+        <h3>Enterprise AI Adoption Strategy</h3>
+        <p>From use-case selection to agentic architecture on the Claude / Anthropic stack (API, MCP, agents) — a roadmap that ties every deployment to a measurable business outcome and a control owner.</p>
+        <div class="tags"><span>Roadmap</span><span>Agents · MCP</span><span>Build vs buy</span></div>
+      </article>
+
+      <article class="svc reveal">
+        <span class="num">04</span>
+        <div class="ic">📊</div>
+        <h3>Bid Strategy &amp; Enterprise GTM</h3>
+        <p>Win the deals worth winning. Proposal and bid strategy, pricing architecture, and product positioning — proposals clients actually want to sign, sharpened across Retail, BFSI and Technology.</p>
+        <div class="tags"><span>Bid management</span><span>Pricing</span><span>Positioning</span></div>
+      </article>
+
+      <article class="svc reveal">
+        <span class="num">05</span>
+        <div class="ic">☁️</div>
+        <h3>Cloud &amp; Delivery Transformation</h3>
+        <p>Migration and cost optimisation (an 18% AWS cut on a retained U.S. account), service management and operational excellence built on ITIL, Six Sigma and CMMI across distributed teams.</p>
+        <div class="tags"><span>AWS</span><span>FinOps</span><span>Service mgmt</span></div>
+      </article>
+
+      <article class="svc reveal">
+        <span class="num">06</span>
+        <div class="ic">🎨</div>
+        <h3>AI-Augmented Creative &amp; Product</h3>
+        <p>Ship faster with AI-native production — UX, 3D, animation and VFX workflows using Figma AI, Midjourney, Runway and LangChain, translating creative briefs into measurable outcomes.</p>
+        <div class="tags"><span>AI workflows</span><span>UX/Product</span><span>Brand</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── Engagements ───────────── -->
+<section id="engagements">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">02 · How to work with me</span>
+      <h2>Three ways in — sized to where you are.</h2>
+      <p>Start small and prove value, or bring me in as the standing governance partner. Every engagement ends with something you own, not a slide deck you file away.</p>
+    </div>
+
+    <div class="eng-grid">
+      <div class="eng reveal">
+        <span class="pill">Entry</span>
+        <span class="kicker">Fixed scope</span>
+        <h3>AI Readiness Sprint</h3>
+        <div class="meta">2–3 weeks · fixed fee</div>
+        <ul>
+          <li>AI &amp; GenAI inventory and risk-tiering</li>
+          <li>Gap assessment vs NIST AI RMF / ISO 42001 / EU AI Act</li>
+          <li>Prioritised remediation roadmap</li>
+          <li>Executive readout for the board</li>
+        </ul>
+      </div>
+
+      <div class="eng feature reveal">
+        <span class="pill">Most popular</span>
+        <span class="kicker">Build &amp; embed</span>
+        <h3>Governance Build</h3>
+        <div class="meta">8–12 weeks · milestone-based</div>
+        <ul>
+          <li>Full AI policy &amp; control framework, audit-ready</li>
+          <li>Oversight operating model &amp; RACI</li>
+          <li>Use-case intake &amp; approval workflow</li>
+          <li>Team enablement &amp; documentation handover</li>
+        </ul>
+      </div>
+
+      <div class="eng reveal">
+        <span class="pill">Ongoing</span>
+        <span class="kicker">Fractional</span>
+        <h3>Advisor on Retainer</h3>
+        <div class="meta">Monthly · fractional Chief AI / governance officer</div>
+        <ul>
+          <li>Standing oversight &amp; new use-case review</li>
+          <li>Regulatory horizon scanning</li>
+          <li>Board &amp; investor-grade reporting</li>
+          <li>On-call for audits, deals and incidents</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── Process ───────────── -->
+<section id="process">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">03 · The method</span>
+      <h2>Governance that ships, not governance that stalls.</h2>
+    </div>
+    <div class="proc">
+      <div class="step reveal"><div class="no"></div><h4>Map</h4><p>Inventory every AI system, owner and data flow — and the risk each one actually carries.</p></div>
+      <div class="step reveal"><div class="no"></div><h4>Classify</h4><p>Tier by impact and regulation, so effort lands where exposure is highest.</p></div>
+      <div class="step reveal"><div class="no"></div><h4>Build</h4><p>Stand up policy, controls and oversight that map to recognised frameworks and pass audit.</p></div>
+      <div class="step reveal"><div class="no"></div><h4>Operate</h4><p>Embed the workflow in your teams and report it in language boards and regulators trust.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── Credibility ───────────── -->
+<section>
+  <div class="wrap">
+    <div class="cred reveal">
+      <span class="eyebrow">04 · Track record</span>
+      <p class="quote" style="margin-top:18px">Built where the stakes were real — <span class="grad">enterprise delivery, public sector, and regulated industries.</span></p>
+      <div class="row">
+        <span class="logo">Accenture</span>
+        <span class="logo">Cognizant</span>
+        <span class="logo">Siemens</span>
+        <span class="logo">Patni</span>
+        <span class="logo">IGATE</span>
+        <span class="logo">Kneuralabs</span>
+        <span class="logo">Ocelli Arts</span>
+      </div>
+      <div class="row" style="margin-top:22px">
+        <span class="logo">🏆 Accenture ACE Award</span>
+        <span class="logo">🌍 ISA Industrialisation Lead · 14 countries</span>
+        <span class="logo">📘 Author · “Governing Intelligence”</span>
+        <span class="logo">📖 Author · “The Art of Asking Questions”</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── Final CTA ───────────── -->
+<section id="contact" class="final">
+  <div class="wrap">
+    <div class="panel reveal">
+      <span class="eyebrow" style="justify-content:center">05 · Let's talk</span>
+      <h2 style="margin-top:18px">Adopting AI? Make it defensible from day one.</h2>
+      <p>A 30-minute call to pressure-test where you are, and a clear view of what governance should look like for your organisation. No deck required.</p>
+      <div class="actions">
+        <a href="mailto:piyal@outlook.com?subject=AI%20Governance%20Advisory%20%E2%80%94%20intro%20call" class="btn btn-primary">Book an intro call →</a>
+        <a href="https://kneuralabs.com" class="btn btn-ghost" target="_blank" rel="noopener">Visit Kneuralabs</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── Footer ───────────── -->
+<footer>
+  <div class="wrap">
+    <div class="mono">KNEURALABS LLC · STRUCTURAL AI GOVERNANCE · CT, USA &amp; KOLKATA, IN</div>
+    <div class="mono" style="display:flex;gap:18px">
+      <a href="mailto:piyal@outlook.com">piyal@outlook.com</a>
+      <a href="https://linkedin.com/in/piyal" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://piyalgupta.github.io/cv/" target="_blank" rel="noopener">CV</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* theme toggle (persisted) */
+(function(){
+  const root=document.documentElement, btn=document.getElementById('themeBtn');
+  const saved=localStorage.getItem('pg-theme');
+  if(saved){root.setAttribute('data-theme',saved);}
+  const sync=()=>btn.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙';
+  sync();
+  btn.addEventListener('click',()=>{
+    const next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);localStorage.setItem('pg-theme',next);sync();
+  });
+})();
+
+/* scroll reveal */
+(function(){
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.14});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{
+    el.style.transitionDelay=(i%6*60)+'ms';
+    io.observe(el);
+  });
+})();
+</script>
+</body>
+</html>
