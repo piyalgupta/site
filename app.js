@@ -116,11 +116,38 @@
 
 /* scroll reveal */
 (function(){
+  const els=document.querySelectorAll('.reveal');
+  if(!els.length) return;
+  const show=el=>el.classList.add('in');
+
+  /* no IntersectionObserver (or older mobile browsers): just show everything */
+  if(!('IntersectionObserver' in window)){
+    els.forEach(show);
+    return;
+  }
+
+  /* rootMargin pulls the trigger line up from the viewport bottom so elements
+     reveal as they enter — and a tiny threshold means tall blocks (taller than
+     a phone screen) and bottom-of-page elements still fire reliably on mobile,
+     where dynamic toolbars shrink the visible viewport. */
   const io=new IntersectionObserver((es)=>{
-    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
-  },{threshold:.14});
-  document.querySelectorAll('.reveal').forEach((el,i)=>{
+    es.forEach(e=>{if(e.isIntersecting){show(e.target);io.unobserve(e.target);}});
+  },{threshold:.01,rootMargin:'0px 0px -10% 0px'});
+
+  els.forEach((el,i)=>{
     el.style.transitionDelay=(i%6*60)+'ms';
     io.observe(el);
+  });
+
+  /* safety net: if anything is still hidden shortly after load (observer never
+     fired for an element already framed in a short mobile viewport), reveal it */
+  window.addEventListener('load',()=>{
+    setTimeout(()=>{
+      els.forEach(el=>{
+        if(el.classList.contains('in')) return;
+        const r=el.getBoundingClientRect();
+        if(r.top<window.innerHeight&&r.bottom>0){show(el);io.unobserve(el);}
+      });
+    },400);
   });
 })();
