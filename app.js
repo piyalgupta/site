@@ -26,6 +26,94 @@
   nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
 })();
 
+/* hero typewriter — types the headline like a person: a couple of typos,
+   a beat to notice, a backspace to fix, then it lands on the real text */
+(function(){
+  const els=document.querySelectorAll('[data-typewriter]');
+  if(!els.length) return;
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce) return; /* honour reduced-motion: leave the real text in place */
+
+  const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+  const rand=(a,b)=>a+Math.random()*(b-a);
+  /* QWERTY neighbours for believable slips */
+  const near={a:'sqwz',b:'vghn',c:'xdfv',d:'serfcx',e:'wrsdf',f:'drtgcv',g:'ftyhbv',h:'gyujbn',i:'ujko',j:'huikmn',k:'jiolm',l:'kop',m:'njk',n:'bhjm',o:'iklp',p:'ol',q:'wa',r:'edft',s:'awedxz',t:'rfgy',u:'yhji',v:'cfgb',w:'qase',x:'zsdc',y:'tghu',z:'asx'};
+  const slip=ch=>{const l=ch.toLowerCase(),n=near[l];if(!n)return ch;const w=n[Math.floor(Math.random()*n.length)];return ch===l?w:w.toUpperCase();};
+  const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const caret='<span class="tw-caret" aria-hidden="true"></span>';
+
+  function runsOf(el){
+    const runs=[];
+    el.childNodes.forEach(n=>{
+      if(n.nodeType===3) runs.push({text:n.textContent,cls:null});
+      else if(n.nodeType===1) runs.push({text:n.textContent,cls:n.getAttribute('class')});
+    });
+    return runs;
+  }
+  function paint(el,runs,visible,extra){
+    let left=visible,html='';
+    for(const r of runs){
+      if(left<=0) break;
+      const take=Math.min(left,r.text.length);
+      const part=esc(r.text.slice(0,take));
+      html+=r.cls?'<span class="'+r.cls+'">'+part+'</span>':part;
+      left-=take;
+    }
+    el.innerHTML=html+esc(extra||'')+caret;
+  }
+
+  async function play(el){
+    const html=el.innerHTML;                 /* exact final markup, restored at the end */
+    const runs=runsOf(el);
+    const full=runs.map(r=>r.text).join('');
+    el.setAttribute('aria-label',full);
+    el.style.minHeight=el.getBoundingClientRect().height+'px'; /* no layout jump */
+    el.classList.add('tw-typing');
+
+    /* pick up to two typo spots at fresh words, spread across the line */
+    const starts=[];
+    for(let i=1;i<full.length;i++) if(full[i-1]===' '&&/[a-z]/i.test(full[i])) starts.push(i);
+    const typos=new Set();
+    [0.34,0.7].forEach(f=>{
+      let best=-1,bd=1e9;const t=Math.floor(full.length*f);
+      starts.forEach(s=>{const d=Math.abs(s-t);if(d<bd){bd=d;best=s;}});
+      if(best>0) typos.add(best);
+    });
+
+    await sleep(420);
+    let v=0;
+    while(v<full.length){
+      if(typos.has(v)){
+        let wrong='';const n=2+Math.floor(Math.random()*2);
+        for(let i=0;i<n&&v+i<full.length;i++){
+          wrong+=slip(full[v+i]);
+          paint(el,runs,v,wrong);
+          await sleep(rand(75,130));
+        }
+        await sleep(rand(240,360));        /* notice the mistake */
+        while(wrong.length){
+          wrong=wrong.slice(0,-1);
+          paint(el,runs,v,wrong);
+          await sleep(rand(55,95));        /* backspace */
+        }
+        await sleep(rand(110,180));
+      }
+      v++;
+      paint(el,runs,v,'');
+      const ch=full[v-1];
+      await sleep(/[.,—-]/.test(ch)?rand(220,340):ch===' '?rand(70,150):rand(45,110));
+    }
+
+    await sleep(650);
+    el.classList.remove('tw-typing');
+    el.classList.add('tw-done');
+    el.innerHTML=html;                       /* restore exact final markup (grad span, caret gone) */
+    el.style.minHeight='';
+  }
+
+  els.forEach(play);
+})();
+
 /* scroll reveal */
 (function(){
   const io=new IntersectionObserver((es)=>{
