@@ -7,9 +7,9 @@
   --ink-2:     #39414D;
   --ink-3:     #69707E;
   --ink-4:     #9AA1AD;
-  --accent:    #15724A;   /* restrained deep emerald */
-  --accent-lt: #2E9A6B;
-  --accent-soft:#E0EAE5;
+  --accent:    #1565C0;   /* deep logo blue */
+  --accent-lt: #2E97D4;   /* bright logo sky-blue */
+  --accent-soft:#DEE9F6;
 
   /* neumorphism — soft, cool, understated */
   --nm-light:  #FFFFFF;
@@ -38,9 +38,9 @@
   --ink-2:     #C2C8D2;
   --ink-3:     #8A92A0;
   --ink-4:     #5C636F;
-  --accent:    #46B98A;
-  --accent-lt: #6FD0A6;
-  --accent-soft:#1E2A25;
+  --accent:    #4DA3E8;
+  --accent-lt: #7BC0F2;
+  --accent-soft:#16263A;
   --nm-light:  #23272F;
   --nm-dark:   #0D0F13;
   --glass:     linear-gradient(150deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
