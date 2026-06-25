@@ -147,6 +147,15 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:0}
   font-size:clamp(2.5rem,6vw,4.6rem);line-height:1.05;font-weight:600;
   margin-bottom:1.05rem;max-width:17ch;letter-spacing:-.01em;
 }
+/* typewriter caret for the hero headline */
+.tw-caret{
+  display:inline-block;width:.06em;min-width:2px;height:.92em;
+  margin-left:.04em;vertical-align:-.08em;border-radius:2px;
+  background:var(--accent);
+  animation:tw-blink 1.05s steps(1,end) infinite;
+}
+.tw-typing .tw-caret{animation:none;opacity:1}
+@keyframes tw-blink{0%,100%{opacity:1}50%{opacity:0}}
 .hero h1 .grad{
   background:linear-gradient(120deg,var(--accent),var(--accent-lt));
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-style:italic;
