@@ -1,21 +1,14 @@
 # Security Policy
 
-## Supported Versions
-
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
-
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+This repository hosts a static marketing site (HTML/CSS/JS, no backend, no
+build step, no user accounts or stored data) served via GitHub Pages. There
+is no versioned software release to track — the live site is always the
+content on the default branch.
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
-
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+If you find a security issue (e.g. an XSS vector, a misconfigured header, or
+exposed sensitive information), please report it privately by emailing
+**piyal@outlook.com** rather than opening a public issue. Include steps to
+reproduce and the potential impact. We aim to acknowledge reports within a
+few business days and will let you know once a fix has shipped.

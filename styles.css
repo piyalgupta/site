@@ -191,7 +191,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:0}
 /* ───────────────────────── Section frame ───────────────────────── */
 section{padding:72px 0;position:relative}
 .sec-head{margin-bottom:44px;max-width:64ch}
-.sec-head h2{font-size:clamp(1.9rem,3.6vw,2.8rem);font-weight:600;margin:.6rem 0 .7rem;line-height:1.12;letter-spacing:-.01em}
+.sec-head h1,.sec-head h2{font-size:clamp(1.9rem,3.6vw,2.8rem);font-weight:600;margin:.6rem 0 .7rem;line-height:1.12;letter-spacing:-.01em}
 .sec-head p{color:var(--ink-2);font-size:1.08rem}
 .page-head{padding-top:62px;padding-bottom:0}
 

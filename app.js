@@ -22,8 +22,9 @@
 (function(){
   const btn=document.getElementById('menuBtn'), nav=document.getElementById('nav');
   if(!btn||!nav) return;
-  btn.addEventListener('click',()=>nav.classList.toggle('open'));
-  nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+  const setOpen=open=>{nav.classList.toggle('open',open);btn.setAttribute('aria-expanded',open);};
+  btn.addEventListener('click',()=>setOpen(!nav.classList.contains('open')));
+  nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setOpen(false)));
 })();
 
 /* hero typewriter — types the headline like a person: a couple of typos,
